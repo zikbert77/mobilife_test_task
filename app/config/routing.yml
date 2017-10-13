@@ -1,0 +1,31 @@
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+blog_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Test:index }
+
+view_article:
+    path:     /article/{slug}
+    defaults: { _controller: AppBundle:Test:view }
+
+ajax:
+    path:     /ajax
+    defaults: { _controller: AppBundle:Test:ajax }
+
+register:
+    path: /register
+    defaults: { _controller: AppBundle:Registration:register }
+
+login:
+    path: /login
+    defaults: { _controller: AppBundle:Login:login }
+
+logout:
+    path: /logout
+    defaults: { _controller: AppBundle:Login:logout }
+
+admin:
+    path: /admin
+    defaults: { _controller: AppBundle:Admin:index }

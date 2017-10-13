@@ -1,0 +1,8 @@
+app_admin:
+    resource: "@AppBundle/Resources/config/routing/article.yml"
+    prefix:   /admin
+
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+

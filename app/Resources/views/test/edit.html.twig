@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    number page
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                {{ form_start(form, {'attr': { 'class' : 'form-horizontal' }}) }}
+                <div class="form-group">
+                    <label>
+                        {{ form_label(form.title) }}
+                    </label>
+                    {{ form_widget(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="form-group">
+                    <label>
+                        {{ form_label(form.text) }}
+                    </label>
+                    {{ form_widget(form.text, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.save, { 'attr' : { 'class' : 'btn btn-primary' } }) }}
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+

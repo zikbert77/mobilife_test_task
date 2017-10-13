@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    My symfony project
+
+{% endblock %}
+
+
+{% block body %}
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <h2>Categories</h2>
+                    <ul>
+                        {% for category in categories %}
+                            <li> {{ category.name }} </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-10">
+                    <div id="demo" class="display">
+                        <!--Some content here-->
+                        <table id="example" class="display">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Slug</th>
+                                <th>Text</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}
