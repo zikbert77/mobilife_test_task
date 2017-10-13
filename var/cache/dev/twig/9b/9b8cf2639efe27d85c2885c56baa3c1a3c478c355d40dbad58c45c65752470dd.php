@@ -15,11 +15,11 @@ class __TwigTemplate_2c7d532dcd487cba134ed0c5069ed294ef1bb2250383882979e0577cea1
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a43eabb5bd3bf4437b1eca76a9d75a594c67943bcf6b8efbd7ca159bcba1d535 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_a43eabb5bd3bf4437b1eca76a9d75a594c67943bcf6b8efbd7ca159bcba1d535->enter($__internal_a43eabb5bd3bf4437b1eca76a9d75a594c67943bcf6b8efbd7ca159bcba1d535_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Twig/Exception/logs.html.twig"));
+        $__internal_94b1e8d64f8719590f2d9e6def05f7b08a819d8cc910e52c4f9124b94dbb2f21 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_94b1e8d64f8719590f2d9e6def05f7b08a819d8cc910e52c4f9124b94dbb2f21->enter($__internal_94b1e8d64f8719590f2d9e6def05f7b08a819d8cc910e52c4f9124b94dbb2f21_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Twig/Exception/logs.html.twig"));
 
-        $__internal_48380a97e79fb8490c343dd33ca16f7974677d34497c1f4191acdc78a3c71554 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_48380a97e79fb8490c343dd33ca16f7974677d34497c1f4191acdc78a3c71554->enter($__internal_48380a97e79fb8490c343dd33ca16f7974677d34497c1f4191acdc78a3c71554_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Twig/Exception/logs.html.twig"));
+        $__internal_0e51de1c5461c406a318ad84d76f66d33926a6b51d91c7d4cbcfbfa4a1b8c60a = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_0e51de1c5461c406a318ad84d76f66d33926a6b51d91c7d4cbcfbfa4a1b8c60a->enter($__internal_0e51de1c5461c406a318ad84d76f66d33926a6b51d91c7d4cbcfbfa4a1b8c60a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Twig/Exception/logs.html.twig"));
 
         // line 1
         $context["channel_is_defined"] = twig_get_attribute($this->env, $this->getSourceContext(), twig_first($this->env, (isset($context["logs"]) || array_key_exists("logs", $context) ? $context["logs"] : (function () { throw new Twig_Error_Runtime('Variable "logs" does not exist.', 1, $this->getSourceContext()); })())), "channel", array(), "any", true, true);
@@ -110,10 +110,10 @@ class __TwigTemplate_2c7d532dcd487cba134ed0c5069ed294ef1bb2250383882979e0577cea1
 </table>
 ";
         
-        $__internal_a43eabb5bd3bf4437b1eca76a9d75a594c67943bcf6b8efbd7ca159bcba1d535->leave($__internal_a43eabb5bd3bf4437b1eca76a9d75a594c67943bcf6b8efbd7ca159bcba1d535_prof);
+        $__internal_94b1e8d64f8719590f2d9e6def05f7b08a819d8cc910e52c4f9124b94dbb2f21->leave($__internal_94b1e8d64f8719590f2d9e6def05f7b08a819d8cc910e52c4f9124b94dbb2f21_prof);
 
         
-        $__internal_48380a97e79fb8490c343dd33ca16f7974677d34497c1f4191acdc78a3c71554->leave($__internal_48380a97e79fb8490c343dd33ca16f7974677d34497c1f4191acdc78a3c71554_prof);
+        $__internal_0e51de1c5461c406a318ad84d76f66d33926a6b51d91c7d4cbcfbfa4a1b8c60a->leave($__internal_0e51de1c5461c406a318ad84d76f66d33926a6b51d91c7d4cbcfbfa4a1b8c60a_prof);
 
     }
 
@@ -170,6 +170,6 @@ class __TwigTemplate_2c7d532dcd487cba134ed0c5069ed294ef1bb2250383882979e0577cea1
     {% endfor %}
     </tbody>
 </table>
-", "@Twig/Exception/logs.html.twig", "/home/dev/Projects/symfony_project/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/logs.html.twig");
+", "@Twig/Exception/logs.html.twig", "/home/dev/Sites/mobilife_test_task/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/Exception/logs.html.twig");
     }
 }
