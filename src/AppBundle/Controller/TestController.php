@@ -14,6 +14,7 @@ class TestController extends Controller
     public function ajaxAction(Request $request)
     {
 
+        $search = $request->query->get('search');
         $start = $request->query->get('start');
         $length = $request->get('length');
         $order = $request->get('order');
@@ -21,26 +22,35 @@ class TestController extends Controller
 
         $articles = [];
 
+        $value = '%'. $search['value'] . '%';
         /** @var EntityManagerInterface $em */
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQueryBuilder()
             ->select('p')
             ->from('AppBundle:Article', 'p')
+            ->where('p.title LIKE :search OR p.text LIKE :search OR p.slug LIKE :search')
+            ->setParameter('search', $value ?? '')
             ->addOrderBy("p.".$columns[$order[0]['column']]['data'], $order[0]['dir'])
             ->setFirstResult($start)
             ->setMaxResults($length)
             ->getQuery();
+        $data = $query->getArrayResult();
 
 
-        $query2 = $em->createQueryBuilder()
-            ->select('count(p)')
-            ->from('AppBundle:Article', 'p')
-            ->getQuery();
-        $count = $query2->getArrayResult();
+        if ( !$search['value'] ){
+            $query2 = $em->createQueryBuilder()
+                ->select('count(p)')
+                ->from('AppBundle:Article', 'p')
+                ->getQuery();
+            $res = $query2->getArrayResult();
+            $count = $res[0][1];
+        } else {
+            $count = count($data);
+        }
 
-        $articles['recordsTotal'] = $count[0][1];
-        $articles['recordsFiltered'] = $count[0][1];
+        $articles['recordsTotal'] = $count;
+        $articles['recordsFiltered'] = $count;
         $articles['data'] = $query->getArrayResult();
 
         return new JsonResponse($articles);
