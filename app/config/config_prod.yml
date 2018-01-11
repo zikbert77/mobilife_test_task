@@ -6,6 +6,13 @@ imports:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc
 #        query_cache_driver: apc
+framework:
+    cache:
+        default_memcached_adapter: "memcached://localhost"
+        pools:
+            app.cache.articles:
+                adapter: cache.adapter.memcached
+                public: true
 
 monolog:
     handlers:

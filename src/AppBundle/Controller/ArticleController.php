@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
+use Doctrine\Bundle\DoctrineCacheBundle\Tests\Functional\Fixtures\Memcached;
+use Symfony\Component\Cache\Adapter\MemcachedAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -32,7 +34,7 @@ class ArticleController extends Controller
                 $i++;
             }
 
-            return $this->redirectToRoute('article_indexgo');
+            return $this->redirectToRoute('article_index');
         }
     }
 
@@ -54,13 +56,32 @@ class ArticleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('AppBundle:Article')->findBy([],[
-            'createdAt' => 'DESC'
-        ]);
+        /**@var $cacheArticles MemcachedAdapter*/
+        $conn = MemcachedAdapter::createConnection('memcached://localhost:11211');
 
-        return $this->render('article/index.html.twig', array(
-            'articles' => $articles,
-        ));
+        if (!$conn->get('articles')) {
+            dump('Cache doesn`t exist! Set data into cache');
+            $articles = $em->getRepository('AppBundle:Article')->findBy([],[
+                'createdAt' => 'DESC'
+            ]);
+
+            $conn->set('articles', $articles, 60);
+
+        } else {
+            dump('Cache exists! Data loaded from memcache');
+            $articles = $conn->get('articles');
+        }
+
+        if(!$conn->get('articles_template')){
+            $articles_template = $this->render('article/index.html.twig', array(
+                'articles' => $articles,
+            ));
+            $conn->set('articles_template', $articles_template, 3600);
+        } else {
+            $articles_template = $conn->get('articles_template');
+        }
+
+        return $articles_template;
     }
 
     /**
