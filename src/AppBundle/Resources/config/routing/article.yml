@@ -22,3 +22,8 @@ article_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Article:delete" }
     methods:  DELETE
+
+article_autofill:
+    path:     /autofill
+    defaults: { _controller: "AppBundle:Article:autofill" }
+    methods:  POST

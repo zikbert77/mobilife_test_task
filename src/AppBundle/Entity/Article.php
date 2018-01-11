@@ -25,11 +25,6 @@ class Article
     private $text;
 
     /**
-     * @var int
-     */
-    private $catId;
-
-    /**
      * @var string
      */
     private $slug;
@@ -49,31 +44,6 @@ class Article
     {
         return $this->id;
     }
-
-    /**
-     * Get catId
-     *
-     * @return int
-     */
-    public function getCatId()
-    {
-        return $this->catId;
-    }
-
-    /**
-     * Set catId
-     *
-     * @param integer $catId
-     *
-     * @return Article
-     */
-    public function setCatId($catId)
-    {
-        $this->catId = $catId;
-
-        return $this;
-    }
-
 
     /**
      * Set title
@@ -169,34 +139,5 @@ class Article
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-    /**
-     * @var \AppBundle\Entity\Categories
-     */
-    private $cat;
-
-
-    /**
-     * Set cat
-     *
-     * @param \AppBundle\Entity\Categories $cat
-     *
-     * @return Article
-     */
-    public function setCat(\AppBundle\Entity\Categories $cat = null)
-    {
-        $this->cat = $cat;
-
-        return $this;
-    }
-
-    /**
-     * Get cat
-     *
-     * @return \AppBundle\Entity\Categories
-     */
-    public function getCat()
-    {
-        return $this->cat;
     }
 }

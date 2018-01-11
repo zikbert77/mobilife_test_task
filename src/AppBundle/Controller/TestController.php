@@ -84,27 +84,13 @@ class TestController extends Controller
         ));
      }
 
-    public function showAction(Article $post)
-    {
-        return $this->render('post/show.html.twig', array(
-            'post' => $post
-        ));
-    }
-//public function indexAction ()
+//    public function showAction(Article $post)
 //    {
-//        $em = $this->getDoctrine();
-//        $blogRepository = $em->getRepository("AppBundle:Article");
-//        $categoriesRepository = $em->getRepository("AppBundle:Categories");
-//        $categories = $categoriesRepository->findBy( [
-//            'parent' => 0
-//        ]);
-//        $articles = $blogRepository->findAll();
-//        $pages = ceil(count($articles) / 5);
-//        return $this->render("test/index.html.twig", [
-//            'categories' => $categories,
-//            'pages' => $pages
-//        ]);
+//        return $this->render('post/show.html.twig', array(
+//            'post' => $post
+//        ));
 //    }
+
 
     public function viewAction( $slug )
     {

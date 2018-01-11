@@ -1,10 +1,6 @@
 AppBundle\Entity\Article:
     type: entity
     table: article
-    indexes:
-        cat_id:
-            columns:
-                - cat_id
     id:
         id:
             type: integer
@@ -37,15 +33,4 @@ AppBundle\Entity\Article:
             type: datetime
             nullable: false
             column: created_at
-    manyToOne:
-        cat:
-            targetEntity: Categories
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                cat_id:
-                    referencedColumnName: cat_id
-            orphanRemoval: false
     lifecycleCallbacks: {  }

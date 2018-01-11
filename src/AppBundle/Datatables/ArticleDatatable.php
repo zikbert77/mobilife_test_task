@@ -65,15 +65,6 @@ class ArticleDatatable extends AbstractDatatable
             ->add('createdAt', DateTimeColumn::class, array(
                 'title' => 'CreatedAt',
                 ))
-            ->add('cat.catId', Column::class, array(
-                'title' => 'Cat CatId',
-                ))
-            ->add('cat.name', Column::class, array(
-                'title' => 'Cat Name',
-                ))
-            ->add('cat.parent', Column::class, array(
-                'title' => 'Cat Parent',
-                ))
             ->add(null, ActionColumn::class, array(
                 'title' => $this->translator->trans('sg.datatables.actions.title'),
                 'actions' => array(

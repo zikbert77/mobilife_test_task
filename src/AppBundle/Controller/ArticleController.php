@@ -13,6 +13,39 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ArticleController extends Controller
 {
+
+    public function autofillAction(Request $request){
+        if ($count = $request->request->get('count')){
+            $i = 0;
+
+            while($i < $count){
+
+                $article = new Article();
+                $article->setTitle(self::generateRandomString(rand(3, 10)));
+                $article->setText(self::generateRandomString(rand(10, 20)));
+                $article->setSlug($this->validateSlug(self::generateRandomString(rand(3, 15))));
+                $article->setCreatedAt(new \DateTime());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+
+                $i++;
+            }
+
+            return $this->redirectToRoute('article_indexgo');
+        }
+    }
+
+    private static function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     /**
      * Lists all article entities.
      *
@@ -49,7 +82,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('admin_show', array('id' => $article->getId()));
+            return $this->redirectToRoute('article_show', array('id' => $article->getId()));
         }
 
         return $this->render('article/new.html.twig', array(
