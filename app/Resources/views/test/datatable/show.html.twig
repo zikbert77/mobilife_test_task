@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    My symfony project
+
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    {{ sg_datatables_render(post) }}
+
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}

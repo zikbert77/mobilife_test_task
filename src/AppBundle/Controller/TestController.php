@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Datatables\ArticleDatatable;
+use AppBundle\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -56,21 +58,53 @@ class TestController extends Controller
         return new JsonResponse($articles);
     }
 
-    public function indexAction ()
+    public function indexAction (Request $request)
     {
-        $em = $this->getDoctrine();
-        $blogRepository = $em->getRepository("AppBundle:Article");
-        $categoriesRepository = $em->getRepository("AppBundle:Categories");
-        $categories = $categoriesRepository->findBy( [
-            'parent' => 0
-        ]);
-        $articles = $blogRepository->findAll();
-        $pages = ceil(count($articles) / 5);
-        return $this->render("test/index.html.twig", [
-            'categories' => $categories,
-            'pages' => $pages
-        ]);
+        $isAjax = $request->isXmlHttpRequest();
+
+        // Get your Datatable ...
+        //$datatable = $this->get('app.datatable.post');
+        //$datatable->buildDatatable();
+
+        // or use the DatatableFactory
+        /** @var DatatableInterface $datatable */
+        $datatable = $this->get('sg_datatables.factory')->create(ArticleDatatable::class);
+        $datatable->buildDatatable();
+
+        if ($isAjax) {
+            $responseService = $this->get('sg_datatables.response');
+            $responseService->setDatatable($datatable);
+            $responseService->getDatatableQueryBuilder();
+
+            return $responseService->getResponse();
+        }
+
+        return $this->render('test/datatable/index.html.twig', array(
+            'datatable' => $datatable,
+        ));
+     }
+
+    public function showAction(Article $post)
+    {
+        return $this->render('post/show.html.twig', array(
+            'post' => $post
+        ));
     }
+//public function indexAction ()
+//    {
+//        $em = $this->getDoctrine();
+//        $blogRepository = $em->getRepository("AppBundle:Article");
+//        $categoriesRepository = $em->getRepository("AppBundle:Categories");
+//        $categories = $categoriesRepository->findBy( [
+//            'parent' => 0
+//        ]);
+//        $articles = $blogRepository->findAll();
+//        $pages = ceil(count($articles) / 5);
+//        return $this->render("test/index.html.twig", [
+//            'categories' => $categories,
+//            'pages' => $pages
+//        ]);
+//    }
 
     public function viewAction( $slug )
     {
