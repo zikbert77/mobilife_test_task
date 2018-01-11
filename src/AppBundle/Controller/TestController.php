@@ -2,9 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Datatables\ArticleDatatable;
-use AppBundle\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
+use AppBundle\Datatables\ArticleDatatable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -62,12 +61,6 @@ class TestController extends Controller
     {
         $isAjax = $request->isXmlHttpRequest();
 
-        // Get your Datatable ...
-        //$datatable = $this->get('app.datatable.post');
-        //$datatable->buildDatatable();
-
-        // or use the DatatableFactory
-        /** @var DatatableInterface $datatable */
         $datatable = $this->get('sg_datatables.factory')->create(ArticleDatatable::class);
         $datatable->buildDatatable();
 
@@ -83,14 +76,6 @@ class TestController extends Controller
             'datatable' => $datatable,
         ));
      }
-
-//    public function showAction(Article $post)
-//    {
-//        return $this->render('post/show.html.twig', array(
-//            'post' => $post
-//        ));
-//    }
-
 
     public function viewAction( $slug )
     {
