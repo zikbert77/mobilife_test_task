@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
-use Doctrine\Bundle\DoctrineCacheBundle\Tests\Functional\Fixtures\Memcached;
 use Symfony\Component\Cache\Adapter\MemcachedAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,7 +23,7 @@ class ArticleController extends Controller
 
                 $article = new Article();
                 $article->setTitle(self::generateRandomString(rand(3, 10)));
-                $article->setText(self::generateRandomString(rand(10, 20)));
+                $article->setText(self::generateRandomString(rand(10, 50)));
                 $article->setSlug($this->validateSlug(self::generateRandomString(rand(3, 15))));
                 $article->setCreatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
@@ -39,7 +38,7 @@ class ArticleController extends Controller
     }
 
     private static function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
@@ -60,7 +59,6 @@ class ArticleController extends Controller
         $conn = MemcachedAdapter::createConnection('memcached://localhost:11211');
 
         if (!$conn->get('articles')) {
-            dump('Cache doesn`t exist! Set data into cache');
             $articles = $em->getRepository('AppBundle:Article')->findBy([],[
                 'createdAt' => 'DESC'
             ]);
@@ -68,7 +66,6 @@ class ArticleController extends Controller
             $conn->set('articles', $articles, 60);
 
         } else {
-            dump('Cache exists! Data loaded from memcache');
             $articles = $conn->get('articles');
         }
 
