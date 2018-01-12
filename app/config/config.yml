@@ -75,7 +75,8 @@ doctrine:
                 dql:
                     string_functions:
                         Cast: AppBundle\DQL\CastFunction
-
+                        to_date: AppBundle\DQL\ToDateFunction
+                        to_timestamp: AppBundle\DQL\ToTimestampFunction
 
 # Swiftmailer Configuration
 swiftmailer:

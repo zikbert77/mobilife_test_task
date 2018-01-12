@@ -56,7 +56,6 @@ class ArticleDatatable extends AbstractDatatable
         $this->columnBuilder
             ->add('id', Column::class, array(
                 'title' => 'Id',
-//                'dql' =>"(SELECT {p} FROM AppBundle:Article {p} WHERE CAST({p}.id AS TEXT) LIKE '%1%')"
                 'dql' =>"CAST(article.id AS TEXT)"
                 ))
             ->add('title', Column::class, array(
@@ -70,7 +69,8 @@ class ArticleDatatable extends AbstractDatatable
                 ))
             ->add('createdAt', DateTimeColumn::class, array(
                 'title' => 'CreatedAt',
-                ))
+                'dql' =>"to_timestamp(CAST(article.createdAt AS TEXT), 'YYYY-MM-DD HH24:MI:SS')"
+            ))
             ->add(null, ActionColumn::class, array(
                 'title' => $this->translator->trans('sg.datatables.actions.title'),
                 'actions' => array(
