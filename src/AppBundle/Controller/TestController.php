@@ -2,10 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Datatables\ArticleDatatable;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
@@ -38,7 +36,6 @@ class TestController extends Controller
        $article = $articleRepository->findBy([
            'slug' => $slug
        ]);
-
 
        return $this->render("test/view.html.twig", [
           'article' => $article

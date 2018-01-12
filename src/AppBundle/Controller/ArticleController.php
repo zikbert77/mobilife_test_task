@@ -75,6 +75,7 @@ class ArticleController extends Controller
             ));
             $conn->set('articles_template', $articles_template, 3600);
         } else {
+            $conn->delete('articles');
             $articles_template = $conn->get('articles_template');
         }
 

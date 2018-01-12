@@ -19,6 +19,10 @@ use Sg\DatatablesBundle\Datatable\Editable\CombodateEditable;
 use Sg\DatatablesBundle\Datatable\Editable\SelectEditable;
 use Sg\DatatablesBundle\Datatable\Editable\TextareaEditable;
 use Sg\DatatablesBundle\Datatable\Editable\TextEditable;
+use Doctrine\ORM\Query\AST\Functions\FunctionNode;
+use Doctrine\ORM\Query\Lexer;
+use Doctrine\ORM\Query\Parser;
+use Doctrine\ORM\Query\SqlWalker;
 
 /**
  * Class ArticleDatatable
@@ -52,6 +56,8 @@ class ArticleDatatable extends AbstractDatatable
         $this->columnBuilder
             ->add('id', Column::class, array(
                 'title' => 'Id',
+//                'dql' =>"(SELECT {p} FROM AppBundle:Article {p} WHERE CAST({p}.id AS TEXT) LIKE '%1%')"
+                'dql' =>"CAST(article.id AS TEXT)"
                 ))
             ->add('title', Column::class, array(
                 'title' => 'Title',
